@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+#
+# Key bindings
+#
+# See: man zshzle
+
+autoload zkbd
+bindkey -v
+if [[ -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]]; then
+    source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+else
+    echo "WARNING: no key bindings - run 'zkbd' to create"
+fi
+
+[[ -n ${key[Left]} ]]     && bindkey "${key[Left]}"     backward-char
+[[ -n ${key[Right]} ]]    && bindkey "${key[Right]}"    forward-char
+[[ -n ${key[Home]} ]]     && bindkey "${key[Home]}"     beginning-of-line
+[[ -n ${key[End]} ]]      && bindkey "${key[End]}"      end-of-line
+[[ -n ${key[Delete]} ]]   && bindkey "${key[Delete]}"   delete-char
+[[ -n ${key[PageUp]} ]]   && bindkey "${key[PageUp]}"   history-incremental-search-backward
+[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" history-incremental-search-forward
+
+# Ctrl-Left
+bindkey "^[[1;5D" backward-word
+# Ctrl-Right
+bindkey "^[[1;5C" forward-word
+# Ctrl-R
+bindkey "^R" history-incremental-search-backward
+
+# Do not exit on end-of-file (Ctrl-D). Require the use of "exit" or "logout" instead.
+setopt IGNORE_EOF
