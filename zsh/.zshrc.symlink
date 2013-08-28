@@ -30,3 +30,18 @@ bindkey "^R" history-incremental-search-backward
 
 # Do not exit on end-of-file (Ctrl-D). Require the use of "exit" or "logout" instead.
 setopt IGNORE_EOF
+
+#
+# History
+#
+# See: man zshoptions
+
+HISTSIZE=20000
+SAVEHIST=20000
+HISTFILE=$HOME/.zsh_history
+
+setopt append_history
+setopt extended_history
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_reduce_blanks
