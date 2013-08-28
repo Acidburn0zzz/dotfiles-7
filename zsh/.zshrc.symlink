@@ -45,3 +45,15 @@ setopt extended_history
 setopt hist_ignore_space
 setopt hist_ignore_dups
 setopt hist_reduce_blanks
+
+#
+# Completion
+#
+# See: man zshcompsys
+
+LISTMAX=200
+
+autoload -U compinit
+compinit
+
+zstyle ':completion:*' menu select
