@@ -63,3 +63,11 @@ zstyle ':completion:*' menu select
 #
 
 PROMPT="%* %~ $ "
+
+#
+# Local configuration
+#
+
+if [[ -a ~/.localrc ]]; then
+  source ~/.localrc
+fi
